@@ -1,5 +1,7 @@
 package org.launchcode.java.demos.lsn4classes2;
 
+import java.util.Objects;
+
 public class Student {
 
     private static int nextStudentId = 1;
@@ -30,20 +32,43 @@ public class Student {
 
 
      //TODO: Uncomment and complete the getGradeLevel method here:
-//    public String getGradeLevel() {
+    public String getGradeLevel() {
 //        // Determine the grade level of the student based on numberOfCredits
-//    }
+        String freshman = "Freshman";
+        String sophomore = "Sophomore";
+        String junior = "Junior";
+        String senior = "Senior";
+
+        if(numberOfCredits <= 29 )
+            return freshman;
+        else if(numberOfCredits <= 59)
+            return sophomore;
+        else if (numberOfCredits <= 89)
+            return junior;
+        else return senior;
+    }
 
     // TODO: Complete the addGrade method.
     public void addGrade(int courseCredits, double grade) {
-        // Update the appropriate fields: numberOfCredits, gpa
+        double currentTotalQualityScore = gpa * numberOfCredits;
+        currentTotalQualityScore += courseCredits * grade;
+        numberOfCredits += courseCredits;
+
+        gpa = currentTotalQualityScore / numberOfCredits;
     }
 
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
     //  than just the class fields.
-
+    @Override
+    public String toString() {
+        return "Student name = " + name + '\n' +
+                "ID = " + studentId + '\n' +
+                "Total credits = " + numberOfCredits + '\n' +
+                "GPA" + gpa;
+    }
     // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
     //  Student objects equal.
+
 
     public String getName() {
         return name;
